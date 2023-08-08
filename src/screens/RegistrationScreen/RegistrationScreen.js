@@ -3,7 +3,7 @@ import { StyleSheet, Text, ImageBackground,
    Platform } from "react-native";
 import React, { useState } from "react";
 
-const buttonImg = require('./add.png');
+const buttonImg = require('../../assets/img/add.png');
 
 const RegistrationScreen = ({changeScrenn}) => {
 
