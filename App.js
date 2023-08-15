@@ -1,36 +1,46 @@
-import { StatusBar  } from 'expo-status-bar';
-import { StyleSheet, ImageBackground, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from "react";
-import RegistrationScreen from './src/screens/RegistrationScreen/RegistrationScreen';
-import LoginScreen from './src/screens/LoginScreen/LoginScreen';
+import {
+  StyleSheet,
+  ImageBackground,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
+import RegistrationScreen from "./src/screens/RegistrationScreen/RegistrationScreen";
 
-const backImage = require('./assets/img/Photo_BG.png');
+const backImage = require("./assets/img/Photo_BG.png");
 
 export default function App() {
+  const [activeScreen, setActiveScreen] = useState(0);
 
-   const [activeScreen, setActiveScreen] = useState(0);
-   const changeScrennFunc = (value) => { setActiveScreen (value) }
+  const changeScreen = (value) => {
+    setActiveScreen(value);
+  };
 
   return (
-  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={styles.maincontainer}>
-      <ImageBackground source={backImage} style={styles.backImg} >
-        { activeScreen=== 0 ? <LoginScreen changeScrenn={ changeScrennFunc }/> :
-         <RegistrationScreen changeScrenn={ changeScrennFunc }/>}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.mainContainer}>
+        <ImageBackground source={backImage} style={styles.backImg}>
+          {activeScreen === 0 ? (
+            <LoginScreen changeScreen={changeScreen} />
+          ) : (
+            <RegistrationScreen changeScreen={changeScreen} />
+          )}
         </ImageBackground>
-        <StatusBar style="auto" />  
-    </View>
-  </TouchableWithoutFeedback>);
+      </View>
+    </TouchableWithoutFeedback>
+  );
 }
 
 const styles = StyleSheet.create({
-  maincontainer: {
+  mainContainer: {
     flex: 1,
-    alignItems: 'center',
-  }, 
+    alignItems: "center",
+  },
   backImg: {
     flex: 1,
-    justifyContent: 'flex-end',
-    width: '100%'
+    justifyContent: "flex-end",
+    width: "100%",
   },
 });
